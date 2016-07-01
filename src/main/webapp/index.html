@@ -1,75 +1,10 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
-		<title>Bootstrap test</title>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<script src="commons/js/jquery-1.12.4.min.js"></script>
-		<script src="restJs.js"></script>
-		<style type="text/css">
-			.pic{margin:10px auto}
-			.code{height:30px;display:block}
-			.span{font-size:30px;}
-		</style>
+		<meta charset="utf-8" />
+		<title>11111</title>
 	</head>
-
 	<body>
-		<h1>Hello, world!</h1>
-		<img class="pic">
-		<input type="text" class="code"></input>
-		<span></span>
+		
 	</body>
-
-	<script>
-	function test() {
-		$.ajax({
-	         dataType: 'text',
-	         type: 'get',
-	         url:  "/resteasyDemo/rest/echo/getPic",
-	         beforeSend: function(request) {
-                 request.setRequestHeader("Cache-Control", "max-age=5");
-             },
-	         success: function(resp) {
-	        	 console.log(resp);
-	         },
-	         error: function(e) {
-	        	 console.log("error:"+e);
-	         }
-	     })
-	}
-		$(function() {
-			var picBase64 = Echo.getPic();
-			$('.pic').attr('src',picBase64);
-			/* var echoResultPath = Echo.echoServicePath({message:111});
-			console.log(JSON.stringify(echoResultPath));
-			var echoResultQuery = Echo.echoServiceQuery({test:"测试"});
-			console.log(JSON.parse(echoResultQuery)['code']+"---"+JSON.parse(echoResultQuery)['value']); */
-			
-			
-			$('.pic').on('click',function() {
-				var picBase64 = Echo.getPic({
-					headers:[
-							['Cache-Control',"max-age=" + 5]
-					         ]
-				});
-				$('.pic').attr('src',picBase64);
-			})
-			
-			$('.code').on('blur',function() {
-				var code = $('.code').val();
-				if(code) {
-					var result = Echo.checkCode({code:code});
-					if(JSON.parse(result)['code'] == 0) {
-						$('span').html("验证码匹配成功");
-					} else {
-						$('span').html("验证码匹配失败");
-					}
-				}
-			})
-			
-		})
-	
-	</script>
-
 </html>
