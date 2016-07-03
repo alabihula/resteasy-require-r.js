@@ -13,7 +13,7 @@ require.config({
 });
  
 require(['useName1','useName2'],function(use1,use2) {
-	console.log(use1.do+"---"+use2.do);
+	console.log(use1.doo+"---"+use2.doo);
 });
 
 
