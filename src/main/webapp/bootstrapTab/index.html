@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>bootstrapTable</title>
+	</head>
+	<style>
+		.box{
+			width:800px;
+			height:550px;
+			margin:0 auto;
+			background:#181c1f;
+		}
+		.box div{
+			position:static;
+		}
+	</style>
+	<link rel="stylesheet" type="text/css" href="bootstrap.css"/>
+	<link rel="stylesheet" type="text/css" href="bootstrap-table.css"/>
+	<link rel="stylesheet" type="text/css" href="table.dark.css"/>
+	<script src="../commons/js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="bootstrap.js" type="text/javascript" charset="utf-8"></script>
+	<script src="bootstrap-table.js" type="text/javascript" charset="utf-8"></script>
+	<script src="bootstrap-table-zh-CN.js" type="text/javascript" charset="utf-8"></script>
+	<body>
+		<div class="box">
+			<div id="toolbar"></div>
+			<table id="tab_box">
+				
+			</table>
+		</div>
+	</body>
+	<script type="text/javascript">
+	$(function() {
+		
+	
+	 $('#tab_box').bootstrapTable({
+        method: 'get',
+        toolbar: '#toolbar',    //工具按钮用哪个容器
+        height: 500,
+        striped: true,      //是否显示行间隔色
+        cache: false,      //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+        pagination: true,     //是否显示分页（*）
+        paginationLoop:false,
+        showPageDetail:false,
+        paginationHAlign:'center',
+        sortable: false,      //是否启用排序
+        sortOrder: "asc",     //排序方式
+        pageNumber:1,      //初始化加载第一页，默认第一页
+        pageSize: 10,      //每页的记录行数（*）
+        //pageList: [10, 25, 50, 100],  //可供选择的每页的行数（*）
+        url: "/resteasy-require/rest/echo/getDetail",//这个接口需要处理bootstrap table传递的固定参数
+        queryParamsType:'', //默认值为 'limit' ,在默认情况下 传给服务端的参数为：offset,limit,sort
+                            // 设置为 ''  在这种情况下传给服务器的参数为：pageSize,pageNumber
+
+        queryParams: queryParams,//前端调用服务时，会默认传递上边提到的参数，如果需要添加自定义参数，可以自定义一个函数返回请求参数
+        sidePagination: "server",   //分页方式：client客户端分页，server服务端分页（*）
+        //search: true,      //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+       	//strictSearch: true,
+        //showColumns: true,     //是否显示所有的列
+        //showRefresh: true,     //是否显示刷新按钮
+        minimumCountColumns: 1,    //最少允许的列数
+        clickToSelect: true,    //是否启用点击选中行
+        searchOnEnterKey: true,
+        columns: [{
+            field: 'id',
+            title: 'id',
+            align: 'center'
+        }, {
+            field: 'goodroadid',
+            title: '测试标识',
+            align: 'center'
+        }, {
+            field: 'price',
+            title: '测试名字',
+            align: 'center'
+        },{
+            field: 'goodsName',
+            title: '操作',
+            align: 'center',
+            formatter:function(value,row,index){
+            	return "<span style='color:#b55e0b'>"+value+"-"+index+"</span>";
+            }
+        }],
+        rowStyle:function rowStyle(row, index) {
+        	console.log(row);
+        	console.log(index);
+        	if(row.goodsName == 'name: 1') {
+        		return {
+        			classes:'no',
+        			css:{"color":'red'}
+        		}
+        	}
+        	return {classes:'no'}
+        }
+    });
+	 
+	 function queryParams(params) {
+		 console.log(params);
+		 return {
+			 pageStyle : 0,
+             pageSize: params.pageSize,
+             pageNumber: params.pageNumber,
+             type:11
+         };
+	 }
+	})
+	</script>
+</html>

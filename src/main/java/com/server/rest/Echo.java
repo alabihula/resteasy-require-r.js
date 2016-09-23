@@ -7,10 +7,12 @@ import javax.servlet.http.HttpSession;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.server.util.SecurityCode;
 import com.server.util.SecurityImage;
@@ -54,22 +56,71 @@ public class Echo {
 	@GET
 	@Path(value = "/check")
 	public String checkCode(
-			@Context HttpServletRequest request,
-            @Context HttpServletResponse response,
-            @QueryParam("code") String code)
+            @QueryParam("code") int code,
+            @QueryParam("code1") int code1,
+            @QueryParam("code2") int code2,
+            @QueryParam("code3") int code3
+            )
 	{
-		HttpSession session = request.getSession();
-		String SessionCode = (String) session.getAttribute("code");
 		
 		ResponseResult resultStr = new ResponseResult();
 		resultStr.setMsg("调用成功");
-		resultStr.setValue("传入参数："+code);;
-		if(code.equals(SessionCode)) {
-			resultStr.setCode(0);
-		} else {
-			resultStr.setCode(1);
-		}
+		resultStr.setValue("传入参数："+code);
+		System.out.println("code: "+code);
+		System.out.println("code1: "+code1);
+		System.out.println("code2: "+code2);
+		System.out.println("code3: "+code3);
 		return JSON.toJSONString(resultStr);
+	}
+	
+	@GET
+	@Path(value = "/getDetail")
+	@Produces("application/json; charset=utf-8")  
+	public String detail(
+			@QueryParam("pageSize") int pageSize,
+			@QueryParam("pageNumber") int pageNumber,
+			@QueryParam("pageStyle") int pageStyle
+			)
+	{
+		System.out.println("pageSize: "+pageSize);
+		System.out.println("pageStyle: "+pageStyle);
+		System.out.println("pageNumber: "+pageNumber);
+		
+		
+		JSONObject returnJson = new JSONObject();
+		JSONArray jsonData=new JSONArray();
+        JSONObject jo=null;
+        for (int i=0;i<150;i++)
+        {
+            jo=new JSONObject();
+            jo.put("id",  i+1);
+            jo.put("liushuiid", "liushui "+i);
+            jo.put("price", String.format("%1.2f",(i+50)/100.0));
+            jo.put("goodroadid", "goodsid "+i);
+            jo.put("goodsName", "name: "+i);
+            jsonData.add(jo);
+        }
+        
+        //判断是否需要服务端分页，0服务端，1客户端
+  		if(pageStyle == 0) {//服务端
+  			if(pageNumber == 0) pageNumber = 1;
+  			if(pageSize == 0) pageSize = 10;
+  			JSONArray jsonData2 = new JSONArray();
+  			JSONObject jo2 = null;
+  			for (int i = 0; i < pageSize; i++) {
+  				jo2=new JSONObject();
+  				jo2.put("id",  i+1+" 页码："+pageNumber);
+  				jo2.put("liushuiid", "liushui "+i);
+  				jo2.put("price", String.format("%1.2f",(i+50)/100.0));
+  				jo2.put("goodroadid", "goodsid "+i);
+  				jo2.put("goodsName", "name: "+i);
+  				jsonData2.add(jo2);
+			}
+  			returnJson.put("rows", jsonData2);//JSONArray
+  			returnJson.put("total",30);//总记录数
+  			return JSON.toJSONString(returnJson);
+  		}
+		return JSON.toJSONString(jsonData);
 	}
 	
 	public static void main(String[] args) {
