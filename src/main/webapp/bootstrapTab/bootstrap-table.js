@@ -1516,13 +1516,14 @@
             if (this.options.smartDisplay) {
                 if (this.totalPages <= 1) {
                     this.$pagination.find('div.pagination').hide();
+                    this.$pagination.hide();
                 }
                 if (pageList.length < 2 || this.options.totalRows <= pageList[0]) {
                     this.$pagination.find('span.page-list').hide();
                 }
 
-                // when data is empty, hide the pagination
-                this.$pagination[this.getData().length ? 'show' : 'hide']();
+//                // when data is empty, hide the pagination
+//                this.$pagination[this.getData().length ? 'show' : 'hide']();
             }
 
             if (!this.options.paginationLoop) {

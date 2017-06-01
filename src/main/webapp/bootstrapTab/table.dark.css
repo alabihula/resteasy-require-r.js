@@ -1,85 +1,89 @@
-.box .fixed-table-loading{
-	background:#181c1f;
-	line-height:400px;
+.box .fixed-table-loading {
+  background: transparent;
+  overflow: hidden;
 }
-.box .fixed-table-body{
-	border:1px #393b3f solid;
+.box .bootstrap-table .table {
+  font-size: 12px;
+  border: 0;
+  overflow: hidden;
 }
-.box .bootstrap-table .table{
-	font-size:12px;
-	border:0;
+.box .bootstrap-table .table thead {
+  background: #234a64;
 }
-.box .bootstrap-table .table thead{
-	background:#1e2123;
+.box .bootstrap-table .table {
+  background: rgba(8, 35, 52, 0.8);
 }
-.box .table-striped > tbody > tr:nth-of-type(odd){
-	background: #121518;
+.box .table-striped > tbody > tr:nth-of-type(odd) {
+  background: rgba(6, 30, 45, 0.8);
 }
-.box .fixed-table-container{
-	border:0;
+.box .fixed-table-container {
+  border: 0;
 }
-.box .fixed-table-header{
-	background: #1e2123;
-	color:#9c9e9f;
+.box .fixed-table-header {
+  background: #234a64;
+  color: #a9acae;
 }
-.box .fixed-table-body{
-	color:#9c9e9f;
+.box .fixed-table-body {
+  color: #b3b3b3;
 }
-.box .bootstrap-table .table > thead > tr > th{
-	border:0;
+.box .bootstrap-table .table > thead > tr > th {
+  border: 0;
 }
 .box .table-hover > tbody > tr:hover {
-  background-color: #0f2a30;
+  background-color: rgba(35, 74, 100, 0.5);
 }
-.box .pagination > li > a{
-	cursor:pointer;
-	position: relative;
-    float: left;
-    padding: 6px 12px;
-    margin-left: -1px;
-    line-height: 1.42857143;
-    color: #b3b3b3;
-    text-decoration: none;
-    background-color:transparent;
-    border:0;
+.box .fixed-table-pagination {
+  background: #173244;
+  height: 45px;
+}
+.box .pagination > li > a {
+  cursor: pointer;
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  margin-left: 2px;
+  line-height: 1.42857143;
+  color: #b3b3b3;
+  text-decoration: none;
+  background-color: transparent;
+  border: 0;
 }
 .box .bootstrap-table .table:not(.table-condensed),
 .box .bootstrap-table .table:not(.table-condensed) > tbody > tr > th,
 .box .bootstrap-table .table:not(.table-condensed) > tfoot > tr > th,
 .box .bootstrap-table .table:not(.table-condensed) > thead > tr > td,
 .box .bootstrap-table .table:not(.table-condensed) > tbody > tr > td,
-.box .bootstrap-table .table:not(.table-condensed) > tfoot > tr > td{
-	padding:0px;
+.box .bootstrap-table .table:not(.table-condensed) > tfoot > tr > td {
+  padding: 7px;
 }
-.box .pagination > li > a:hover, 
-.box .pagination > li > span:hover, 
-.box .pagination > li > a:focus, 
-.box .pagination > li > span:focus{
-	color:white;
-	background:#2b363f;
+.box .pagination > li > a:hover,
+.box .pagination > li > span:hover,
+.box .pagination > li > a:focus,
+.box .pagination > li > span:focus {
+  color: white;
+  background: #3a6276;
 }
-.box .pagination > .disabled > span, 
-.box .pagination > .disabled > span:hover, 
-.box .pagination > .disabled > span:focus, 
-.box .pagination > .disabled > a, 
-.box .pagination > .disabled > a:hover, 
-.box .pagination > .disabled > a:focus{
-	color: white;
-    cursor: not-allowed;
+.box .pagination > li > a:active {
+  color: white;
+  background: #25485a;
 }
-.box .pagination > .active > a, 
-.box .pagination > .active > span, 
-.box .pagination > .active > a:hover, 
-.box .pagination > .active > span:hover, 
-.box .pagination > .active > a:focus, 
-.box .pagination > .active > span:focus{
-	background-color: #405260;
-    border-color: none;
-    cursor:pointer;
+.box .pagination > .active > a,
+.box .pagination > .active > span,
+.box .pagination > .active > a:hover,
+.box .pagination > .active > span:hover,
+.box .pagination > .active > a:focus,
+.box .pagination > .active > span:focus {
+  background-color: #45758e;
+  border-color: none;
+  cursor: pointer;
 }
 .box .pagination > li:first-child > a,
 .box .pagination > li:first-child > span,
 .box .pagination > li:last-child > a,
-.box .pagination > li:last-child > span{
-	border-radius:0;
+.box .pagination > li:last-child > span {
+  border-radius: 0;
+}
+.box .fixed-table-pagination div.pagination,
+.box .fixed-table-pagination .pagination-detail {
+  margin-top: 5px;
 }
